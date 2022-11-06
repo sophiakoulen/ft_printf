@@ -80,4 +80,19 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+//extra
+int		ft_nbr_abs_len(int n, int base);
+int		ft_nbr_len(int n, int base);
+int		ft_nbr_len_unsigned(unsigned int n, unsigned int base);
+
+int		ft_sign(int n);
+
+char	*ft_itoa_base(int n, char *symbols);
+void	ft_putnbr_base_fd(int n, char *symbols, int fd);
+
+char	*ft_itoa_base_unsigned(unsigned int n, char *symbols);
+void	ft_putnbr_base_unsigned_fd(unsigned int n, char *symbols, int fd);
+
+
 #endif

@@ -56,7 +56,16 @@ ft_lstadd_back_bonus.o \
 ft_lstdelone_bonus.o \
 ft_lstclear_bonus.o \
 ft_lstiter_bonus.o \
-ft_lstmap_bonus.o 
+ft_lstmap_bonus.o
+
+EXTRA = extra/ft_sign.o \
+extra/ft_itoa_base.o \
+extra/ft_nbr_abs_len.o \
+extra/ft_nbr_len.o \
+extra/ft_nbr_len_unsigned.o \
+extra/ft_putnbr_base_fd.o \
+extra/ft_itoa_base_unsigned.o \
+extra/ft_putnbr_base_unsigned_fd.o
 
 all: $(NAME)
 
@@ -65,11 +74,11 @@ $(NAME): $(SRC)
 	ranlib $@
 
 .c.o:
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $? -o $@
 
 
 clean:
-	rm -rf $(SRC) $(BONUS)
+	rm -rf $(SRC) $(BONUS) $(EXTRA)
 
 fclean:	clean
 	rm -f $(NAME)
@@ -77,7 +86,8 @@ fclean:	clean
 re: fclean all
 
 bonus: $(SRC) $(BONUS)
-	ar r $(NAME) $(SRC) $(BONUS)
-	ranlib $(NAME)
+	ar rcs $(NAME) $(SRC) $(BONUS)
 
+extra: $(SRC) $(BONUS) $(EXTRA)
+	ar rcs $(NAME) $(SRC) $(BONUS) $(EXTRA)
 
