@@ -1,8 +1,10 @@
 NAME=libftprintf.a
-SRCS=ft_printf.c \
-get_val.c \
-print_val.c \
-val_length.c 
+
+SRCS= ft_printf.c \
+utilities/ft_printf_get_value.c \
+utilities/ft_printf_print_value.c \
+utilities/ft_printf_length_value.c 
+
 OBJS=$(SRCS:.c=.o)
 
 CC = gcc

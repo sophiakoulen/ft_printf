@@ -6,13 +6,14 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 10:55:54 by skoulen           #+#    #+#             */
-/*   Updated: 2022/11/06 11:05:12 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/11/07 10:52:38 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_itoa_base_unsigned_helper(unsigned int n, unsigned int base, char *symbols, char *ptr)
+static char	*ft_itoa_base_unsigned_helper(size_t n,
+				size_t base, char *symbols, char *ptr)
 {
 	if (n >= base)
 		ptr = ft_itoa_base_unsigned_helper(n / base, base, symbols, ptr);
@@ -21,11 +22,11 @@ static char	*ft_itoa_base_unsigned_helper(unsigned int n, unsigned int base, cha
 	return (ptr + 1);
 }
 
-char	*ft_itoa_base_unsigned(unsigned int n, char *symbols)
+char	*ft_itoa_base_unsigned(size_t n, char *symbols)
 {
 	char			*ptr;
 	size_t			len;
-	unsigned int	base;
+	size_t			base;
 
 	base = ft_strlen(symbols);
 	len = ft_nbr_len(n, base);

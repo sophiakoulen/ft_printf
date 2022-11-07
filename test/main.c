@@ -1,6 +1,6 @@
 # include "test.h"
 
-/*static void	test_c(void)
+static void	test_c(void)
 {
 	int actual, expected;
 
@@ -12,9 +12,10 @@
 			printf("actual: %d, expected: %d\n", actual, expected);
 		assert(actual == expected);
 	}
-}*/
+	printf("\n\n");
+}
 
-/*static void	test_s(void)
+static void	test_s(void)
 {
 	int actual, expected;
 
@@ -23,16 +24,25 @@
 	if (actual != expected)
 		printf("actual: %d, expected: %d\n", actual, expected);
 	assert(actual == expected);
-}*/
+	printf("\n\n");
+}
 
-int main()
+static void test_p(void)
 {
-	//test_c();
-	//test_s();
-	int actual = ft_printf("%p", (void *)-14523);
-	int expected = printf("%p", (void *)-14523);
+	int actual, expected;
+
+	actual = ft_printf("%p\n", (void *)-14523);
+	expected = printf("%p\n", (void *)-14523);
 	if (actual != expected)
 		printf("actual: %d, expected: %d\n", actual, expected);
 	assert(actual == expected);
+	printf("\n\n");
+}
+
+int main()
+{
+	test_c();
+	test_s();
+	test_p();
 	return (0);
 }

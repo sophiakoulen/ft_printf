@@ -1,41 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/07 10:49:04 by skoulen           #+#    #+#             */
+/*   Updated: 2022/11/07 10:49:53 by skoulen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_vdprintf(const char *format, va_list ap, int fd)
 {
-	va_list ap;
-	int		i;
-	int		fd;
 	int		ret;
-	t_value val;
+	t_value	val;
 
-	fd = 1;
-	i = 0;
 	ret = 0;
-	va_start(ap, format);
-	while (format[i])
+	while (*format)
 	{
-		if (format[i] != '%')
+		if (*format != '%')
 		{
-			ft_putchar_fd(format[i], fd);
+			ft_putchar_fd(*format, fd);
 			ret++;
 		}
 		else
 		{
-			i++;
-			if (format[i] == '%')
-			{
-				ft_putchar_fd('%', fd);
-				ret++;
-			}
-			else
-			{
-				val = get_val(ap, format[i]);
-				print_val(val, format[i], fd);
-				ret += val_length(val, format[i]);
-			}
+			format++;
+			ft_printf_get_value(ap, *format, &val);
+			ft_printf_print_value(val, *format, fd);
+			ret += ft_printf_length_value(val, *format);
 		}
-		i++;
-	}	
+		format++;
+	}
+	return (ret);
+}
+
+int	ft_vprintf(const char *format, va_list ap)
+{
+	int	ret;
+
+	ret = ft_vdprintf(format, ap, 1);
+	return (ret);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	int		ret;
+	va_list	ap;
+
+	va_start(ap, format);
+	ret = ft_vprintf(format, ap);
 	va_end(ap);
 	return (ret);
 }

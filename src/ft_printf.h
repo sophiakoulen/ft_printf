@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/07 10:50:04 by skoulen           #+#    #+#             */
+/*   Updated: 2022/11/07 10:50:29 by skoulen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -10,7 +22,7 @@
 # define HEX_UPPER	"0123456789ABCDEF"
 # define HEX_LOWER	"0123456789abcdef"
 
-typedef union	u_value
+typedef union u_value
 {
 	int				i;
 	unsigned int	u;
@@ -18,10 +30,12 @@ typedef union	u_value
 	void			*p;
 }	t_value;
 
-int	ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
+int		ft_vprintf(const char *format, va_list ap);
+int		ft_vdprintf(const char *format, va_list ap, int fd);
 
-t_value get_val(va_list ap, char specifier);
-void	print_val(t_value val, char specifier, int fd);
-int		val_length(t_value val, char specifier);
+void	ft_printf_get_value(va_list ap, char specifier, t_value *val);
+void	ft_printf_print_value(t_value val, char specifier, int fd);
+int		ft_printf_length_value(t_value val, char specifier);
 
 #endif
