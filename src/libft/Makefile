@@ -58,14 +58,14 @@ ft_lstclear_bonus.o \
 ft_lstiter_bonus.o \
 ft_lstmap_bonus.o
 
-EXTRA = extra/ft_sign.o \
-extra/ft_itoa_base.o \
-extra/ft_nbr_abs_len.o \
-extra/ft_nbr_len.o \
-extra/ft_nbr_len_unsigned.o \
-extra/ft_putnbr_base_fd.o \
-extra/ft_itoa_base_unsigned.o \
-extra/ft_putnbr_base_unsigned_fd.o
+EXTRA = ft_sign.o \
+ft_itoa_base.o \
+ft_nbr_abs_len.o \
+ft_nbr_len.o \
+ft_nbr_len_unsigned.o \
+ft_putnbr_base_fd.o \
+ft_itoa_base_unsigned.o \
+ft_putnbr_base_unsigned_fd.o
 
 all: $(NAME)
 
