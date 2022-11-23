@@ -12,3 +12,7 @@ It handles the following specifiers:
 - %X
 - %p
 - %%
+
+## how to make
+
+`cd src && make LIBFT_PATH=../libft`

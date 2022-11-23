@@ -41,8 +41,9 @@ static void test_p(void)
 
 int main()
 {
-	test_c();
-	test_s();
-	test_p();
+	//test_c();
+	//test_s();
+	//test_p();
+	ft_dprintf(2, "hello world\n");
 	return (0);
 }

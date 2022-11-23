@@ -1,35 +1,40 @@
 NAME=libftprintf.a
 
 SRCS= ft_printf.c \
-utilities/ft_printf_get_value.c \
-utilities/ft_printf_print_value.c \
-utilities/ft_printf_length_value.c 
 
-OBJS=$(SRCS:.c=.o)
+UTILS= ft_printf_get_value.c \
+ft_printf_print_value.c \
+ft_printf_length_value.c 
+
+OBJ_DIR = obj
+
+OBJS= $(addprefix obj/,$(SRCS:%.c=%.o) $(UTILS:%.c=%.o))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I. -Ilibft
-
-LIBFT_PATH = ~/cursus42/libft/src
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-fetch-libft:
-	rm -rf libft
-	cp -R $(LIBFT_PATH) libft
+$(OBJS): libft.a $(SRCS) $(addprefix utils/,$(UTILS))
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c -I. -I$(LIBFT_PATH) $(SRCS) $(addprefix utils/,$(UTILS))
+	mv $(SRCS:.c=.o) $(UTILS:.c=.o) obj
 
-$(NAME): $(OBJS)
-	make extra -C libft
-	cp libft/libft.a .
+$(NAME): libft.a $(OBJS)
 	mv libft.a $(NAME)
 	ar rs $(NAME) $(OBJS)
 
+libft.a:
+	make -C $(LIBFT_PATH)
+	cp $(LIBFT_PATH)/libft.a . 
+
 clean:
-	rm -f $(OBJS)
-	make clean -C libft
+	rm -rf obj
+	make clean -C $(LIBFT_PATH)
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C libft
+	rm -f libft.a
+	make fclean -C $(LIBFT_PATH)
 
 re: fclean all

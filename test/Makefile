@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I../src -L../src
+CFLAGS = -Wall -Wextra -I../src -L../src -I../libft
 
 SRC = main.c
 

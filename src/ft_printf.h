@@ -6,14 +6,14 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:50:04 by skoulen           #+#    #+#             */
-/*   Updated: 2022/11/07 10:50:29 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/11/23 13:38:24 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft/libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -32,7 +32,8 @@ typedef union u_value
 
 int		ft_printf(const char *format, ...);
 int		ft_vprintf(const char *format, va_list ap);
-int		ft_vdprintf(const char *format, va_list ap, int fd);
+int		ft_vdprintf(int fd, const char *format, va_list ap);
+int		ft_dprintf(int fd, const char *format, ...);
 
 void	ft_printf_get_value(va_list ap, char specifier, t_value *val);
 void	ft_printf_print_value(t_value val, char specifier, int fd);

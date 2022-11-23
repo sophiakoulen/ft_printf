@@ -6,13 +6,13 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:49:04 by skoulen           #+#    #+#             */
-/*   Updated: 2022/11/07 10:49:53 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/11/23 13:37:29 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_vdprintf(const char *format, va_list ap, int fd)
+int	ft_vdprintf(int fd, const char *format, va_list ap)
 {
 	int		ret;
 	t_value	val;
@@ -41,7 +41,7 @@ int	ft_vprintf(const char *format, va_list ap)
 {
 	int	ret;
 
-	ret = ft_vdprintf(format, ap, 1);
+	ret = ft_vdprintf(1, format, ap);
 	return (ret);
 }
 
@@ -52,6 +52,17 @@ int	ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	ret = ft_vprintf(format, ap);
+	va_end(ap);
+	return (ret);
+}
+
+int	ft_dprintf(int fd, const char *format, ...)
+{
+	int		ret;
+	va_list	ap;
+
+	va_start(ap, format);
+	ret = ft_vdprintf(fd, format, ap);
 	va_end(ap);
 	return (ret);
 }
